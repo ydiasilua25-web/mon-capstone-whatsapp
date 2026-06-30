@@ -1,0 +1,25 @@
+{
+  "name": "capstone-1-kadea-chat-clone-whatsapp-web-ydiasilua25-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kadea-academy-learners/capstone-1-kadea-chat-clone-whatsapp-web-ydiasilua25-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kadea-academy-learners/capstone-1-kadea-chat-clone-whatsapp-web-ydiasilua25-web/issues"
+  },
+  "homepage": "https://github.com/kadea-academy-learners/capstone-1-kadea-chat-clone-whatsapp-web-ydiasilua25-web#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "tailwindcss": "^4.3.2"
+  }
+}
