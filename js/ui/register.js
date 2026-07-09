@@ -1,6 +1,6 @@
 import { register } from "../services/authService.js";
-const form = document.querySelector("#registerForm");
 
+const form = document.querySelector("#registerForm");
 const fullNameInput = document.querySelector("#fullname");
 const emailInput = document.querySelector("#email");
 const passwordInput = document.querySelector("#password");

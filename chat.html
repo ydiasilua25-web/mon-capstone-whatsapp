@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="./dist/output.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="h-full flex text-slate-800 antialiased overflow-hidden">
+    <!-- 1. BARRE LATÉRALE D'ONGLETS -->
+    <!-- Masquée sur mobile (hidden), elle apparaît en flex à partir des écrans portables/tablettes (md:flex) -->
+    <nav class="hidden md:flex w-16 h-full bg-white border-r border-slate-200 flex-col justify-between items-center py-4 flex-shrink-0">
+        <div class="flex flex-col gap-6 w-full items-center">
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                <i data-lucide="message-square"></i>
+            </button>
+            <button class="p-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-200 hover:bg-blue-700 transition-all">
+                <i data-lucide="messages-square" class="w-6 h-6"></i>
+            </button>
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                <i data-lucide="phone"></i>
+            </button>
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                <i data-lucide="user"></i>
+            </button>
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                <i data-lucide="calendar"></i>
+            </button>
+        </div>
+        <div>
+            <button class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
+                <i data-lucide="settings"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 2. SECTION LISTE DES CONVERSATIONS -->
+    <!-- Masquée sur mobile (hidden), elle prend toute sa place à partir des écrans intermédiaires (sm:flex ou md:w-80) -->
+    <aside class="hidden sm:flex w-full sm:w-72 md:w-80 h-full bg-white border-r border-slate-200 flex-col flex-shrink-0">
+        <!-- En-tête Profil -->
+        <header class="p-4 flex items-center justify-between border-b border-slate-100">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100&q=80" alt="Alex Rivera" class="w-10 h-10 rounded-full object-cover">
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+
+                <div>
+                    <h2 id="currentUserName" class="font-semibold text-sm leading-tight">Alex Rivera</h2>
+                    <p class="text-xs text-slate-500">
+                        My Status: 
+                        <span id="currentUserStatus" class="text-green-600 font-medium">
+                            Active
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors">
+                <i data-lucide="square-pen" class="w-5 h-5"></i>
+            </button>
+        </header>
+
+        <!-- Recherche -->
+        <div class="p-4">
+            <div class="relative flex items-center">
+                <i data-lucide="search" class="absolute left-3 w-4 h-4 text-slate-400 pointer-events-none"></i>
+                <input type="text" placeholder="Search conversations..." class="w-full bg-slate-100 pl-10 pr-4 py-2 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all">
+            </div>
+        </div>
+
+        <!-- Liste Contacts -->
+        <div id="conversationList" class="flex-1 overflow-y-auto space-y-1 px-2">
+            <!-- Sarah Connor (Active) -->
+            <div class="flex items-center gap-3 p-3 bg-blue-50/60 border-l-4 border-blue-600 rounded-r-xl cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Sarah Connor" class="w-11 h-11 rounded-full object-cover flex-shrink-0">
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-semibold text-sm truncate">Sarah Connor</h3>
+                        <span class="text-xs text-blue-600 font-medium">14:20</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-0.5">
+                        <p class="text-xs text-slate-600 truncate">Yeah, that sounds like a great plan!</p>
+                        <span class="bg-blue-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full flex-shrink-0 ml-2">2</span>
+                    </div>
+                </div>
+            </div>
+            <!-- John Doe -->
+            <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-xl cursor-pointer transition-colors">
+                <div class="w-11 h-11 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-semibold text-sm flex-shrink-0">JD</div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-sm text-slate-700 truncate">John Doe</h3>
+                        <span class="text-xs text-slate-400">Yesterday</span>
+                    </div>
+                    <p class="text-xs text-slate-500 truncate mt-0.5">Can you send me those files again?</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 3. ZONE DE CHAT PRINCIPALE -->
+    <!-- Par défaut elle prend tout l'écran en mobile (flex-1). Sur tablette/bureau, elle s'ajuste avec le reste -->
+    <main class="flex-1 h-full flex flex-col bg-slate-50">
+        <!-- En-tête -->
+        <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between flex-shrink-0">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Bouton Retour : Visible UNIQUEMENT sur mobile (sm:hidden) pour simuler le retour à la liste -->
+                <button class="sm:hidden p-1.5 text-slate-500 hover:bg-slate-100 rounded-lg">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Sarah Connor" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover">
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+                <div>
+                    <h2 class="font-semibold text-xs sm:text-sm">Sarah Connor</h2>
+                    <p class="text-[10px] sm:text-xs text-slate-400 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block"></span> Online
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-1 sm:gap-2 text-slate-500">
+                <button class="p-2 hover:bg-slate-100 rounded-lg transition-colors"><i data-lucide="video" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                <button class="p-2 hover:bg-slate-100 rounded-lg transition-colors"><i data-lucide="phone" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                <button class="p-2 hover:bg-slate-100 rounded-lg transition-colors"><i data-lucide="more-vertical" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+            </div>
+        </header>
+
+        <!-- Zone des messages (Scrollable) -->
+        <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
+            <div class="flex justify-center">
+                <span class="text-[11px] sm:text-xs text-slate-500 bg-slate-200/60 px-3 py-1 rounded-full font-medium">Today</span>
+            </div>
+
+            <!-- Message Reçu -->
+            <div class="max-w-[85%] sm:max-w-xl space-y-1">
+                <div class="bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    Hey Alex! Did you manage to look at the designs I sent over last night?
+                </div>
+                <p class="text-[10px] text-slate-400 px-1">14:02</p>
+            </div>
+
+            <!-- Message Envoyé -->
+            <div class="flex flex-col items-end space-y-1">
+                <div class="max-w-[85%] sm:max-w-xl bg-blue-600 text-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none shadow-sm text-xs sm:text-sm leading-relaxed">
+                    Hey Sarah! Yes, I just finished reviewing them. They look incredible!
+                </div>
+                <div class="flex items-center gap-1 px-1">
+                    <span class="text-[10px] text-slate-400">14:05</span>
+                    <i data-lucide="check-check" class="w-3.5 h-3.5 text-blue-500"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone d'input -->
+        <footer class="h-20 bg-white border-t border-slate-200 px-4 sm:px-6 flex items-center gap-3 sm:gap-4 flex-shrink-0">
+            <div class="flex items-center gap-2 sm:gap-3 text-slate-400 flex-shrink-0">
+                <button class="hover:text-slate-600 transition-colors"><i data-lucide="plus-circle" class="w-5 h-5 sm:w-6 sm:h-6"></i></button>
+                <button class="hover:text-slate-600 transition-colors"><i data-lucide="smile" class="w-5 h-5 sm:w-6 sm:h-6"></i></button>
+            </div>
+
+            <div class="flex-1">
+                <input  id="messageInput" type="text" placeholder="Type a message..." class="w-full bg-slate-100/80 px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm placeholder-slate-400 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all">
+            </div>
+
+            <button  id="sendMessageBtn" class="bg-blue-600 hover:bg-blue-700 text-white p-2 sm:p-2.5 rounded-full shadow-md shadow-blue-200 flex items-center justify-center transition-all flex-shrink-0">
+                <i data-lucide="send" class="w-3.5 h-3.5 sm:w-4 sm:h-4 transform rotate-45 -translate-x-0.5 translate-y-0.5"></i>
+            </button>
+        </footer>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script type="module" src="./js/ui/chat.js"></script>
+</body>
+</html>

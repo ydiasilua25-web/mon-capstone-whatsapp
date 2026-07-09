@@ -4,7 +4,7 @@ const form = document.querySelector("#loginForm");
 const emailInput = document.querySelector("#email");
 const passwordInput = document.querySelector("#password")
 
-form.addEventListener("submit", async (event) =>{
+form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     try {
@@ -22,7 +22,6 @@ form.addEventListener("submit", async (event) =>{
             }
     
             const data = await login(user);
-            console.log(data);
     
             if (data.success) {
                 const token = data.data.token;
@@ -31,7 +30,7 @@ form.addEventListener("submit", async (event) =>{
 
                 alert(data.message);
 
-                //window.location.href = "chat.html";
+                window.location.href = "chat.html";
 
             } else {
                 alert(data.message);
