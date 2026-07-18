@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kadea Chat</title>
+
+    <link rel="stylesheet" href="./dist/output.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <main class="bg-white w-full max-w-md rounded-2xl shadow-lg p-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-600">
+                Kadea Chat
+            </h1>
+
+        </div>
+
+        <form id="registerForm">
+
+            <div class="mb-4">
+                <label for="fullname" class="block mb-2 font-medium">
+                    Nom complet
+                </label>
+
+                <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Entrez votre nom complet"
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-500"
+                >
+            </div>
+        
+            <div class="mb-4">
+                <label for="email" class="block mb-2 font-medium">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Entrez votre email"
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-500"
+                >
+            </div>
+
+                
+            <div class="mb-4">
+                <label for="password" class="block mb-2 font-medium">
+                    Mot de passe
+                </label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="********"
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-500"
+                >
+            </div>
+
+               
+            <div class="mb-6">
+                <label for="confirmPassword" class="block mb-2 font-medium">
+                    Confirmer le mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="********"
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-500"
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-800 transition duration-300"
+            >
+                Créer un compte
+            </button>
+
+            
+            <p class="text-center mt-6 text-sm">
+                Vous avez déjà un compte ?
+                <a href="index.html" class="text-green-600 font-semibold hover:underline">
+                    Se connecter
+                </a>
+            </p>
+
+        </form>
+
+
+    </main>
+
+    <script type="module" src="./js/ui/register.js"></script>
+
+</body>
+</html>
