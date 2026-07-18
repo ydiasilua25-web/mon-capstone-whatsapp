@@ -219,3 +219,55 @@ export async function sendMessage(conversationId, content) {
         throw error;
     }
 }
+
+export async function getCurrentUser() {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch("https://kadea-chat-api.onrender.com/auth/me", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "wksp_4ff9bde48b6dafc1faaae4792a3e6677",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    return await response.json();
+}
+
+export async function logout() {
+
+    const token = localStorage.getItem("token");
+
+    const response = await fetch("https://kadea-chat-api.onrender.com/auth/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "wksp_4ff9bde48b6dafc1faaae4792a3e6677",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    return await response.json();
+}
+
+export async function updateProfile(user) {
+
+    const token = localStorage.getItem("token");
+
+    const response = await fetch("https://kadea-chat-api.onrender.com/users/me", {
+
+        method: "PATCH",
+
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "wksp_4ff9bde48b6dafc1faaae4792a3e6677",
+            "Authorization": `Bearer ${token}`
+        },
+
+        body: JSON.stringify(user)
+
+    });
+
+    return await response.json();
+}

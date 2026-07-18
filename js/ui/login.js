@@ -22,7 +22,8 @@ form.addEventListener("submit", async (event) => {
             }
     
             const data = await login(user);
-    
+                console.log(data.data);
+
             if (data.success) {
                 const token = data.data.token;
                 localStorage.setItem("token", token);
