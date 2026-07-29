@@ -7,109 +7,11 @@
     <link rel="stylesheet" href="./dist/output.css">
 </head>
 
-<body class="h-full flex bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white antialiased overflow-hidden">
+<!-- body class="h-full flex bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white antialiased overflow-hidden" -->
+<body class="h-full flex flex-col md:flex-row text-slate-800 antialiased overflow-hidden">    
     <!-- 1. BARRE LATÉRALE D'ONGLETS -->
     <!-- Masquée sur mobile (hidden), elle apparaît en flex à partir des écrans portables/tablettes (md:flex) -->
-   <nav class="hidden md:flex w-16 h-full bg-white dark:bg-slate-800 dark:border-slate-700 border-r border-slate-200 flex-col justify-between items-center py-4 flex-shrink-0">
-        <div class="flex flex-col gap-6 w-full items-center">
-            <!-- Message square-->
-            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
-                 <svg xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    class="w-6 h-6">
-
-                    <path stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 10h8M8 14h5M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4-.8L3 20l1.2-4A7.93 7.93 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                </svg>
-            </button>
-            <!-- Messages square/conve-->
-            <button id="chatButton"
-                class="p-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-200 hover:bg-blue-700 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    class="w-6 h-6">
-
-                    <path stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17 8h2a2 2 0 012 2v8l-4-4H9a2 2 0 01-2-2v-2M15 3H5a2 2 0 00-2 2v8a2 2 0 002 2h8l4 4V5a2 2 0 00-2-2z"/>
-                </svg>
-            </button>
-            <!-- Phone-->
-            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    class="w-6 h-6">
-
-                    <path stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M22 16.92V20a2 2 0 01-2.18 2A19.86 19.86 0 012 4.18 2 2 0 014 2h3.09a2 2 0 012 1.72l.5 3a2 2 0 01-.57 1.74L7.91 9.91a16 16 0 006.18 6.18l1.45-1.11a2 2 0 011.74-.57l3 .5A2 2 0 0122 16.92z"/>
-                </svg>
-            </button>
-            <!-- User-->
-            <button id="profileButton"
-                class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    class="w-6 h-6">
-
-                    <path stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M20 21a8 8 0 10-16 0M12 11a4 4 0 100-8 4 4 0 000 8z"/>
-                </svg>
-            </button>
-            <!-- Calendar-->
-            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    class="w-6 h-6">
-
-                    <path stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 5h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/>
-                </svg>
-            </button>
-        </div>
-
-        <div class="flex flex-col gap-6 w-full items-center">
-            <!-- Thème-->
-            <button id="themeButton"
-                class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
-                <span id="themeIcon"></span>
-            </button>
-            <!--Settings-->
-            <button class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    class="w-6 h-6">
-
-                    <path stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 15.5A3.5 3.5 0 1012 8.5a3.5 3.5 0 000 7zm7.4-2.5a7.9 7.9 0 000-2l2-1.5-2-3.5-2.4.7a8 8 0 00-1.7-1L15 2h-6l-.3 2.7a8 8 0 00-1.7 1L4.6 5 2.6 8.5l2 1.5a7.9 7.9 0 000 2l-2 1.5L4.6 17l2.4-.7a8 8 0 001.7 1L9 22h6l.3-2.7a8 8 0 001.7-1l2.4.7 2-3.5-2-1.5z"/>
-                </svg>
-            </button>
-
-        </div>
-
-    </nav>
+    
 
     <!-- 2. SECTION LISTE DES CONVERSATIONS -->
     <!-- Masquée sur mobile (hidden), elle prend toute sa place à partir des écrans intermédiaires (sm:flex ou md:w-80) -->
@@ -218,7 +120,7 @@
 
     <!-- 3. ZONE DE CHAT PRINCIPALE -->
     <!-- Par défaut elle prend tout l'écran en mobile (flex-1). Sur tablette/bureau, elle s'ajuste avec le reste -->
-   <main id="chatPanel" class="flex-1 h-full flex flex-col dark:bg-slate-900 text-slate-800 dark:text-white bg-slate-50">
+   <main id="chatPanel" class="flex-1 h-full flex flex-col pb-16 md:pb-0 dark:bg-slate-900 text-slate-800 dark:text-white bg-slate-50">
         <!-- En-tête -->
         <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between flex-shrink-0">
             <div class="flex items-center gap-2 sm:gap-3">
@@ -436,6 +338,97 @@
         </footer>
 
     </main>
+
+    <nav class="w-full md:w-16 h-16 md:h-full bg-white border-b md:border-t-0 md:border-r border-slate-200 flex flex-row md:flex-col justify-between items-center px-6 md:px-0 py-0 md:py-4 flex-shrink-0 gap-6 order-2 md:order-first">
+   <!-- nav class="hidden md:flex w-16 h-full bg-white dark:bg-slate-800 dark:border-slate-700 border-r border-slate-200 flex-col justify-between items-center py-4 flex-shrink-0" -->
+        <!-- div class="flex flex-col gap-6 w-full items-center" -->
+        <div class="flex flex-row md:flex-col items-center justify-around justify-between md:justify-start gap-4 md:gap-6 w-full flex-1 md:flex-none">
+        <!-- div class="flex flex-row md:flex-col gap-2 md:gap-6 w-full justify-around md:items-center" -->
+            <!-- Message square-->
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 10h8M8 14h5M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4-.8L3 20l1.2-4A7.93 7.93 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+            </button>
+            <!-- Messages square/conve-->
+            <button id="chatButton"
+                class="p-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-200 hover:bg-blue-700 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8h2a2 2 0 012 2v8l-4-4H9a2 2 0 01-2-2v-2M15 3H5a2 2 0 00-2 2v8a2 2 0 002 2h8l4 4V5a2 2 0 00-2-2z"/>
+                </svg>
+            </button>
+            <!-- Phone-->
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M22 16.92V20a2 2 0 01-2.18 2A19.86 19.86 0 012 4.18 2 2 0 014 2h3.09a2 2 0 012 1.72l.5 3a2 2 0 01-.57 1.74L7.91 9.91a16 16 0 006.18 6.18l1.45-1.11a2 2 0 011.74-.57l3 .5A2 2 0 0122 16.92z"/>
+                </svg>
+            </button>
+            <!-- User-->
+            <button id="profileButton"
+                class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M20 21a8 8 0 10-16 0M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+                </svg>
+            </button>
+            
+        </div>
+
+        <div class="flex md:flex-col gap-4 w-full items-center">
+            <!-- Thème-->
+            <button id="themeButton"
+                class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
+                <span id="themeIcon"></span>
+            </button>
+            <!--Settings-->
+            <button class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 15.5A3.5 3.5 0 1012 8.5a3.5 3.5 0 000 7zm7.4-2.5a7.9 7.9 0 000-2l2-1.5-2-3.5-2.4.7a8 8 0 00-1.7-1L15 2h-6l-.3 2.7a8 8 0 00-1.7 1L4.6 5 2.6 8.5l2 1.5a7.9 7.9 0 000 2l-2 1.5L4.6 17l2.4-.7a8 8 0 001.7 1L9 22h6l.3-2.7a8 8 0 001.7-1l2.4.7 2-3.5-2-1.5z"/>
+                </svg>
+            </button>
+
+        </div>
+
+    </nav>
 
     <script type="module" src="./js/ui/chat.js"></script>
 

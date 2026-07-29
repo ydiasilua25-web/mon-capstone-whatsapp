@@ -134,7 +134,6 @@ async function loadConversations() {
 
        if (data.success) {
         conversationList.innerHTML = "";
-
         data.data.conversations.forEach((conversation) => {
 
             if (conversation.participants.length < 2) {
@@ -143,10 +142,8 @@ async function loadConversations() {
             const otherParticipant = conversation.participants.find(
             (participant) => participant.user.id !== currentUser.user.id
             );
-            console.log(conversation.messages);
-            
+            console.log(conversation.messages);           
             const lastMessage = conversation.messages.at(-1);
-
             const conversationCard = document.createElement("div");
 
             conversationCard.className =
@@ -176,7 +173,7 @@ async function loadConversations() {
 
                         chatPanel.classList.remove("hidden");
                         chatPanel.classList.add("flex");
-                    }   
+                    }
 
                     chatUserName.textContent = otherParticipant.user.fullName;
                     chatUserBio.textContent = otherParticipant.user.bio || "Aucun bio";
@@ -188,10 +185,8 @@ async function loadConversations() {
                     }
 
                     const messagesData = await getConversationMessages(activeConversationId);
-
                     displayMessages(messagesData.messages);
-                       
-                   
+                          
                 } catch (error) {
                     console.error("Erreur lors de la sélection de la discussion :", error);
                 }
@@ -320,7 +315,7 @@ function displayMessages(messagesList) {
 // Fonction pour gérer l'envoi d'un nouveau message
 async function handleSendMessage() {
     const text = messageInput.value.trim();
-    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
     // Si pas de texte ou si aucune conversation n'est ouverte, on ne fait rien
     if (!text || !activeConversationId) return;
 
