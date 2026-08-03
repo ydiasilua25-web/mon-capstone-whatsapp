@@ -6,8 +6,7 @@ export async function uploadImage(file) {
 
     formData.append("upload_preset", "kadea_chat");
 
-    const response = await fetch(
-        "https://api.cloudinary.com/v1_1/aphejovp/image/upload",
+    const response = await fetch("https://api.cloudinary.com/v1_1/aphejovp/image/upload",
         {
             method: "POST",
             body: formData

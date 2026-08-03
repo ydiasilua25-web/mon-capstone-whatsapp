@@ -182,7 +182,7 @@ export async function getConversationMessages(conversationId) {
             throw new Error(data.message || "Impossible de récupérer les messages");
         }
 
-        // On retourne la clé .data qui contient le tableau des messages d'après ta doc
+        // On retourne la clé .data qui contient le tableau des messages.
         return data.data; 
 
     } catch (error) {

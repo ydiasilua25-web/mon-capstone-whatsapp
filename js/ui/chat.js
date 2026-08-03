@@ -39,7 +39,6 @@ if (!token) {
 if (savedTheme === "dark") {
 
     document.documentElement.classList.add("dark");
-
 }
 
 const moonIcon = `
@@ -69,6 +68,7 @@ const sunIcon = `
 `;
 
 updateThemeIcon();
+
 //charger la profile de User.
 async function loadProfile() {
 
@@ -284,6 +284,26 @@ async function loadUsers() {
     }
 
 }
+//charge la page a tout moment
+async function refreshMessages() {
+
+    if (!activeConversationId) {
+        return;
+    }
+
+    try {
+
+        const messagesData = await getConversationMessages(activeConversationId);
+
+        displayMessages(messagesData.messages);
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
 
 // Fonction pour afficher l'historique des messages
 function displayMessages(messagesList) {
@@ -401,6 +421,8 @@ themeButton.addEventListener("click", () => {
     updateThemeIcon();
 
 });
+
+setInterval(refreshMessages, 2000);
 
 loadProfile();
 handleMobileView()
