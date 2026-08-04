@@ -28,6 +28,7 @@ const themeIcon = document.getElementById("themeIcon");
 
 const token = localStorage.getItem("token");
 const savedTheme = localStorage.getItem("theme");
+const savedConversationId = localStorage.getItem("activeConversationId");
 
 let currentUser = null;
 let activeConversationId = null; // Variable globale pour stocker la conversation en cours
@@ -193,7 +194,11 @@ async function loadConversations() {
 
             });
                 
-           conversationList.appendChild(conversationCard);
+            conversationList.appendChild(conversationCard);
+
+            if (Number(savedConversationId) === conversation.id) {
+                conversationCard.click();
+}
         });
 
         } else {
