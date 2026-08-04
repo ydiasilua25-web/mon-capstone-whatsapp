@@ -132,6 +132,7 @@ function handleMobileView() {
 async function loadConversations() {
     try {
         const data = await getConversations();
+        console.log(data.data.conversations);
 
        if (data.success) {
         conversationList.innerHTML = "";
@@ -297,10 +298,9 @@ async function refreshMessages() {
     }
 
     try {
-
         const messagesData = await getConversationMessages(activeConversationId);
-
         displayMessages(messagesData.messages);
+        await loadConversations();
 
     } catch (error) {
 
