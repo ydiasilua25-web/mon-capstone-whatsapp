@@ -300,7 +300,7 @@ async function refreshMessages() {
     try {
         const messagesData = await getConversationMessages(activeConversationId);
         displayMessages(messagesData.messages);
-        await loadConversations();
+        
 
     } catch (error) {
 

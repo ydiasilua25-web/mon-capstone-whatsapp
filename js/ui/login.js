@@ -2,7 +2,7 @@ import { login} from "../services/authService.js";
 
 const form = document.querySelector("#loginForm");
 const emailInput = document.querySelector("#email");
-const passwordInput = document.querySelector("#password")
+const passwordInput = document.querySelector("#password");
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -27,7 +27,6 @@ form.addEventListener("submit", async (event) => {
             if (data.success) {
                 const token = data.data.token;
                 localStorage.setItem("token", token);
-                //const token = localStorage.getItem("token");
 
                 alert(data.message);
 

@@ -1,68 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-     <link rel="stylesheet" href="./dist/output.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kadea Chat — Connexion</title>
+  <link rel="stylesheet" href="./dist/output.css">
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <main class="bg-white w-full max-w-md rounded-2xl shadow-lg p-8">
-        <div class="text-center mb-8">
-            <img src="" alt="">
+<body class="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6">
 
-            <h1 class="text-3xl font-bold">
-                Connexion
-            </h1>
+  <div class="w-full max-w-md">
+
+    <!-- Logo + Titre -->
+    <div class="flex flex-col items-center text-center mb-6">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.09 0-2.135-.174-3.1-.494L3 21l1.606-3.777C3.594 15.945 3 14.02 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+      </div>
+      <h1 class="text-xl sm:text-2xl font-bold text-blue-700">Welcome back</h1>
+      <p class="text-sm text-gray-500 mt-1 px-2">Please enter your details to sign in to Kadea Chat</p>
+    </div>
+
+    <!-- Carte formulaire -->
+    <div class="bg-gray-100 border border-gray-200 rounded-2xl shadow-sm p-5 sm:p-6">
+      <form id="loginForm" class="space-y-5">
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email Address</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+            </span>
+            <input type="email" id="email" placeholder="name@company.com"
+              class="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
         </div>
 
-        <form id="loginForm">
-            <div class="mb-4">
-                <label for="email" class="block mb-2 font-medium">
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Entrez votre email"
-                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-500"
-                >
-            </div>
-
-                
-            <div class="mb-4">
-                <label for="password" class="block mb-2 font-medium">
-                    Mot de passe
-                </label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="********"
-                    autocomplete="current-password"
-                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-green-500"
-                >
-            </div>
-
-            <button
-                type="submit"
-                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-800 transition duration-300"
-            >
-                Se connecter
+        <!-- Password -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <a href="#" class="text-sm text-blue-600 hover:underline">Forgot?</a>
+          </div>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+              </svg>
+            </span>
+            <input type="password" id="password" value="password"
+              class="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <button type="button" onclick="togglePwd('password')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
             </button>
+          </div>
+        </div>
 
-            
-            <p class="text-center mt-6 text-sm">
-                Vous n'avez pas de compte ?
-                <a href="register.html" class="text-green-600 font-semibold hover:underline">
-                    Créer un compte
-                </a>
-            </p>
-        </form>
-        
-    </main>
+        <!-- Keep me signed in -->
+        <div class="flex items-center">
+          <input id="keep" type="checkbox" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+          <label for="keep" class="ml-2 text-sm text-gray-600">Keep me signed in</label>
+        </div>
 
-    <script type="module" src="./js/ui/login.js"></script>
-    
+        <!-- Bouton -->
+        <button type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg text-sm transition-colors">
+          Login
+        </button>
+      </form>
+    </div>
+
+    <!-- Lien inscription -->
+    <p class="text-center text-sm text-gray-600 mt-5">
+      Don't have an account?
+      <a href="create-account.html" class="text-blue-600 font-medium hover:underline">Create Account</a>
+    </p>
+  </div>
+
+<script type="module" src="./js/ui/login.js">
+function togglePwd(id) {
+  const input = document.getElementById(id);
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+</script>
+
 </body>
 </html>

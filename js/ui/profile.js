@@ -56,8 +56,6 @@ async function loadCurrentUserProfile() {
         console.error(error);
     }
 }
-
-
 loadCurrentUserProfile();
 
 logoutButton.addEventListener("click", async () => {
