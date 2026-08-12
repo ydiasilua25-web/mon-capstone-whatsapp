@@ -1,88 +1,167 @@
 <!DOCTYPE html>
-<html lang="fr" class="h-full bg-slate-50">
+<html lang="fr" class="h-full bg-slate-50 dark:bg-slate-950">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kadea Chat - Profile</title>
     <link rel="stylesheet" href="./dist/output.css">
-</head> 
-<body class="flex flex-col md:flex-row h-full text-slate-800 antialiased font-sans">
+</head>
 
-    <aside class="order-last md:order-first w-full md:w-16 h-16 md:h-full flex flex-row md:flex-col items-center justify-between px-6 py-2 md:px-0 md:py-4 bg-white border-t md:border-t-0 md:border-r border-slate-200 z-20 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] md:shadow-none">
-        <!-- Zone des Icônes Principales -->
-        <!-- flex-row sur mobile / flex-col sur ordinateur -->
+<body class="flex flex-col md:flex-row h-full text-slate-800 dark:text-slate-100 antialiased font-sans bg-slate-50 dark:bg-slate-950">
+
+    <!-- BARRE LATÉRALE -->
+    <aside
+        class="order-last md:order-first w-full md:w-16 h-16 md:h-full flex flex-row md:flex-col items-center justify-between px-6 py-2 md:px-0 md:py-4 bg-white dark:bg-slate-900 border-t md:border-t-0 md:border-r border-slate-200 dark:border-slate-700 z-20 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] md:shadow-none"
+    >
+
+        <!-- Zone des icônes principales -->
         <div class="flex flex-row md:flex-col items-center justify-around md:justify-start gap-0 md:gap-6 w-full flex-1 md:flex-none">
-        <!-- Logo "forum" : caché sur mobile car il prend trop de place, visible sur ordi -->
-            <span class="hidden md:block text-blue-600 font-bold text-xs tracking-wider mb-2">
+
+            <!-- Logo -->
+            <span class="hidden md:block text-blue-600 dark:text-blue-400 font-bold text-xs tracking-wider mb-2">
                 forum
             </span>
+
             <!-- Bouton Chat -->
-            <button id="chatButton"
-                class="p-2 text-slate-400 hover:text-blue-600 cursor-pointer hover:bg-blue-50 transition-colors" > <!-- class="p-2 text-white bg-blue-600 rounded-lg""-->
+            <button
+                id="chatButton"
+                class="p-2 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors"
+            >
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                    </path>
                 </svg>
             </button>
+
             <!-- Bouton Phone -->
-            <button class="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 cursor-pointer transition-colors">
+            <button
+                class="p-2 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 cursor-pointer transition-colors"
+            >
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                    </path>
                 </svg>
             </button>
-            <!-- Bouton Contacts -->
-            <button class="p-2 text-white bg-blue-600 cursor-pointer rounded-lg">
+
+            <!-- Bouton Contacts actif -->
+            <button
+                class="p-2 text-white bg-blue-600 cursor-pointer rounded-lg"
+            >
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
                 </svg>
             </button>
-            <!-- Bouton History/Logs -->
-            <button class="p-2 text-slate-400 hover:text-blue-600 cursor-pointer transition-colors">
+
+            <!-- Bouton History -->
+            <button
+                class="p-2 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors"
+            >
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                    </path>
                 </svg>
             </button>
-            <!-- Bouton Settings (Active) -->
-            <button class="p-2 text-slate-400 hover:text-blue-600 cursor-pointer transition-colors">
+
+            <!-- Bouton Settings -->
+            <button
+                class="p-2 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-colors"
+            >
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31.826-2.37-2.37a1.724 1.724 0 001.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31.826-2.37.996.608 2.296.07 2.572-1.065z">
+                    </path>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                    </path>
                 </svg>
             </button>
 
         </div>
 
-        <!-- Bouton "+" bleu d'action -->
-        <!-- Ajout d'une marge à gauche sur mobile (ml-4) pour le détacher des autres icônes -->
-        <button class="ml-4 md:ml-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 shadow-md transition-all shrink-0">
+        <!-- Bouton + -->
+        <button
+            class="ml-4 md:ml-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 shadow-md transition-all shrink-0"
+        >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4">
+                </path>
             </svg>
         </button>
 
     </aside>
 
-    <!-- 2. ZONE DE CONTENU PRINCIPALE (Topbar + Contenu) -->
-    <div class="flex-1 flex flex-col overflow-hidden"> 
+    <!-- CONTENU PRINCIPAL -->
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+
         <!-- TOPBAR -->
-        <header class="h-14 bg-white border-b border-slate-200 px-6 flex items-center justify-between shadow-sm z-10">
-            <h1 class="text-blue-600 font-bold text-lg">
+        <header
+            class="h-14 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 px-6 flex items-center justify-between shadow-sm z-10"
+        >
+
+            <h1 class="text-blue-600 dark:text-blue-400 font-bold text-lg">
                 Kadea Chat
             </h1>
 
-            <div class="flex items-center gap-4 text-slate-500">
-                <button class="hover:text-slate-800">
+            <div class="flex items-center gap-4 text-slate-500 dark:text-slate-400">
+
+                <button class="hover:text-slate-800 dark:hover:text-white">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                        </path>
                     </svg>
                 </button>
-                <button class="hover:text-slate-800">
+
+                <button class="hover:text-slate-800 dark:hover:text-white">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                        </path>
                     </svg>
                 </button>
-                <button class="hover:text-slate-800">
+
+                <button class="hover:text-slate-800 dark:hover:text-white">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                        </path>
                     </svg>
                 </button>
 
@@ -90,52 +169,87 @@
 
         </header>
 
-        <!-- ÉCRAN DE PROFIL -->
-        <main class="flex-1 overflow-y-auto bg-slate-50/50 px-4 sm:px-8 py-8 flex flex-col items-center">
+        <!-- ÉCRAN PROFIL -->
+
+        <main
+            class="flex-1 overflow-y-auto bg-slate-50/50 dark:bg-slate-950 px-4 sm:px-8 py-8 flex flex-col items-center"
+        >
+
             <div class="w-full max-w-3xl flex flex-col items-center">
-                <!-- En-tête Utilisateur -->
+
+                <!-- En-tête utilisateur -->
                 <div class="flex flex-col items-center text-center mb-8">
 
                     <div class="relative w-24 h-24 mb-4">
-                        <img id="profileAvatar"
+
+                        <img
+                            id="profileAvatar"
                             src="assets/avatars/default-avatar.jpg"
-                            alt="Avatar" class="w-full h-full object-cover rounded-full border border-slate-200 shadow-sm">
-                        <span class="absolute bottom-1 right-1 block h-5 w-5 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+                            alt="Avatar"
+                            class="w-full h-full object-cover rounded-full border border-slate-200 dark:border-slate-700 shadow-sm"
+                        >
+
+                        <span
+                            class="absolute bottom-1 right-1 block h-5 w-5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-950"
+                        ></span>
+
                     </div>
-          
+
                     <h2
                         id="profileName"
-                        class="text-2xl font-bold text-slate-800">
+                        class="text-2xl font-bold text-slate-800 dark:text-white"
+                    >
                         Chargement...
                     </h2>
 
                     <p
                         id="profileEmail"
-                        class="text-sm text-slate-500 mb-2">
+                        class="text-sm text-slate-500 dark:text-slate-400 mb-2"
+                    >
                         Chargement...
                     </p>
-          
-                    <div class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium border border-blue-100">
+
+                    <div
+                        class="inline-flex items-center gap-1 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-medium border border-blue-100 dark:border-blue-900"
+                    >
                         <span id="profileMemberSince"></span>
                     </div>
 
                 </div>
 
-                <!-- GRILLE DE CARTES -->
+                <!-- GRILLE DES CARTES -->
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mb-8">
-                    <!-- Carte : Account Details -->
-                    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+
+                    <!-- Account Details -->
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm"
+                    >
 
                         <div class="flex items-center justify-between mb-6">
-                            <h3 class="font-bold text-slate-800 text-base">
+
+                            <h3 class="font-bold text-slate-800 dark:text-white text-base">
                                 Account Details
                             </h3>
-                            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+
+                            <svg
+                                class="w-5 h-5 text-slate-400 dark:text-slate-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                </path>
                             </svg>
+
                         </div>
-            
+
                         <div class="space-y-4">
+
                             <div>
                                 <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                                     Username
@@ -143,8 +257,8 @@
 
                                 <span
                                     id="profileUsername"
-                                    class="text-sm font-medium text-slate-700">
-                                </span>
+                                    class="text-sm font-medium text-slate-700 dark:text-slate-300"
+                                ></span>
                             </div>
 
                             <div>
@@ -154,8 +268,8 @@
 
                                 <span
                                     id="profilePhone"
-                                    class="text-sm font-medium text-slate-700">
-                                </span>
+                                    class="text-sm font-medium text-slate-700 dark:text-slate-300"
+                                ></span>
                             </div>
 
                             <div>
@@ -165,67 +279,167 @@
 
                                 <span
                                     id="profileLanguage"
-                                    class="text-sm font-medium text-slate-700">
-                                </span>
+                                    class="text-sm font-medium text-slate-700 dark:text-slate-300"
+                                ></span>
                             </div>
 
                         </div>
 
                     </div>
 
-                    <!-- Carte : Privacy & Security -->
-                    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+
+                    <!-- Privacy & Security -->
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm"
+                    >
 
                         <div class="flex items-center justify-between mb-6">
-                            <h3 class="font-bold text-slate-800 text-base">
+
+                            <h3 class="font-bold text-slate-800 dark:text-white text-base">
                                 Privacy & Security
                             </h3>
-                            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+
+                            <svg
+                                class="w-5 h-5 text-slate-400 dark:text-slate-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                </path>
                             </svg>
+
                         </div>
-            
+
                         <div class="space-y-1">
 
-                            <div class="flex items-center justify-between py-2.5 border-b border-slate-100 last:border-0">
+                            <div
+                                class="flex items-center justify-between py-2.5 border-b border-slate-100 dark:border-slate-700"
+                            >
+
                                 <div class="flex items-center gap-3">
-                                    <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+
+                                    <svg
+                                        class="w-4 h-4 text-slate-500 dark:text-slate-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                        </path>
                                     </svg>
-                                    <span class="text-sm font-medium text-slate-700">
+
+                                    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">
                                         Two-Factor Auth
                                     </span>
+
                                 </div>
-                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
+
+                                <span class="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded">
                                     Enabled
                                 </span>
+
                             </div>
 
-                            <button class="w-full flex items-center justify-between py-2.5 border-b border-slate-100 last:border-0 hover:bg-slate-50/50 rounded px-1 -mx-1 transition-colors">
+
+                            <button
+                                class="w-full flex items-center justify-between py-2.5 border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 rounded px-1 -mx-1 transition-colors"
+                            >
+
                                 <div class="flex items-center gap-3">
-                                    <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+
+                                    <svg
+                                        class="w-4 h-4 text-slate-500 dark:text-slate-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                        </path>
+
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                        </path>
                                     </svg>
-                                    <span class="text-sm font-medium text-slate-700">
+
+                                    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">
                                         Active Sessions
                                     </span>
+
                                 </div>
-                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+
+                                <svg
+                                    class="w-4 h-4 text-slate-400 dark:text-slate-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5l7 7-7 7">
+                                    </path>
                                 </svg>
+
                             </button>
-              
-                            <button class="w-full flex items-center justify-between py-2.5 border-b border-slate-100 last:border-0 hover:bg-slate-50/50 rounded px-1 -mx-1 transition-colors">
+
+
+                            <button
+                                class="w-full flex items-center justify-between py-2.5 border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 rounded px-1 -mx-1 transition-colors"
+                            >
+
                                 <div class="flex items-center gap-3">
-                                    <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                                    <span class="text-sm font-medium text-slate-700">
+
+                                    <svg
+                                        class="w-4 h-4 text-slate-500 dark:text-slate-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                        </path>
+                                    </svg>
+
+                                    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">
                                         Alert Preferences
                                     </span>
+
                                 </div>
-                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+
+                                <svg
+                                    class="w-4 h-4 text-slate-400 dark:text-slate-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5l7 7-7 7">
+                                    </path>
                                 </svg>
+
                             </button>
 
                         </div>
@@ -235,40 +449,79 @@
                 </div>
 
                 <!-- BOUTONS D'ACTION -->
+
                 <div class="w-full max-w-md flex flex-col gap-3 mb-12">
 
+                    <!-- Edit Profile -->
                     <button
                         id="editProfileButton"
-                        class="w-full bg-blue-600 text-white font-medium py-2.5 px-4 rounded-xl shadow-sm hover:bg-blue-700 cursor-pointer transition-colors flex items-center justify-center gap-2 text-sm">
+                        class="w-full bg-blue-600 text-white font-medium py-2.5 px-4 rounded-xl shadow-sm hover:bg-blue-700 cursor-pointer transition-colors flex items-center justify-center gap-2 text-sm"
+                    >
+
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-2.036a5 5 0 117.071 7.071L12 21H3v-9l11.121-11.121z"></path>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15.232 5.232l3.536 3.536m-2.036-2.036a5 5 0 117.071 7.071L12 21H3v-9l11.121-11.121z">
+                            </path>
                         </svg>
+
                         Edit Profile
+
                     </button>
-          
-                    <button class="w-full bg-slate-200 text-slate-700 font-medium py-2.5 px-4 rounded-xl hover:bg-slate-300 cursor-pointer transition-colors flex items-center justify-center gap-2 text-sm">
+
+
+                    <!-- Change Password -->
+                    <button
+                        class="w-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium py-2.5 px-4 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 cursor-pointer transition-colors flex items-center justify-center gap-2 text-sm"
+                    >
+
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
+                            </path>
                         </svg>
+
                         Change Password
+
                     </button>
-          
+
+
+                    <!-- Logout -->
                     <button
                         id="logoutButton"
-                        class="w-full bg-transparent text-rose-600 font-semibold py-2.5 px-4 rounded-xl hover:bg-rose-50 cursor-pointer transition-colors flex items-center justify-center gap-2 text-sm mt-2">
+                        class="w-full bg-transparent text-rose-600 dark:text-rose-400 font-semibold py-2.5 px-4 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 cursor-pointer transition-colors flex items-center justify-center gap-2 text-sm mt-2"
+                    >
+
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                            </path>
                         </svg>
+
                         Logout
+
                     </button>
 
                 </div>
 
                 <!-- FOOTER -->
-                <footer class="w-full border-t border-slate-200/60 pt-4 text-center pb-4 md:pb-0">
-                    <p class="text-[10px] text-slate-400 tracking-wide">
+
+                <footer
+                    class="w-full border-t border-slate-200/60 dark:border-slate-700 pt-4 text-center pb-4 md:pb-0"
+                >
+
+                    <p class="text-[10px] text-slate-400 dark:text-slate-500 tracking-wide">
                         Kadea Chat v1.0.0 — Encryption Active
                     </p>
+
                 </footer>
 
             </div>
@@ -277,22 +530,33 @@
 
     </div>
 
-    <div id="editProfileModal"
-        class="modal-overlay fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
+    <!-- MODALE EDIT PROFILE -->
 
-        <div class="modal-content bg-white rounded-xl p-6 w-11/12 max-w-md">
+    <div
+        id="editProfileModal"
+        class="modal-overlay fixed inset-0 z-50 bg-black/50 hidden items-center justify-center"
+    >
+
+        <div
+            class="modal-content bg-white dark:bg-slate-900 text-slate-800 dark:text-white rounded-xl p-6 w-11/12 max-w-md border border-transparent dark:border-slate-700"
+        >
+
             <h2 class="text-xl font-bold mb-4">
                 Modifier le profil
             </h2>
+
 
             <input
                 id="editFullName"
                 type="text"
                 placeholder="Nom complet"
-                class="w-full border rounded-lg p-3 mb-3">
+                class="w-full bg-white dark:bg-slate-800 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 border border-slate-300 dark:border-slate-700 rounded-lg p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+
 
             <label class="block mb-3">
-                <span class="text-sm font-medium">
+
+                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">
                     Photo de profil
                 </span>
 
@@ -300,33 +564,42 @@
                     id="editAvatar"
                     type="file"
                     accept="image/*"
-                    class="mt-2 w-full border rounded-lg p-2"
+                    class="mt-2 w-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 rounded-lg p-2"
                 >
+
             </label>
+
 
             <textarea
                 id="editBio"
                 placeholder="Votre bio"
-                class="w-full border rounded-lg p-3 mb-4">
-            </textarea>
+                class="w-full bg-white dark:bg-slate-800 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 border border-slate-300 dark:border-slate-700 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+
 
             <div class="modal-action flex justify-end gap-3">
+
                 <button
                     id="cancelEdit"
-                    class="px-4 py-2 rounded-lg bg-gray-300">
+                    class="px-4 py-2 rounded-lg bg-gray-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-gray-400 dark:hover:bg-slate-600"
+                >
                     Annuler
                 </button>
 
+
                 <button
                     id="saveProfile"
-                    class="px-4 py-2 rounded-lg bg-blue-600 text-white">
+                    class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+                >
                     Enregistrer
                 </button>
+
             </div>
 
         </div>
 
     </div>
+
 
     <script type="module" src="./js/ui/profile.js"></script>
 

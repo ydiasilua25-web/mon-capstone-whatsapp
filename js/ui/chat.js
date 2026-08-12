@@ -1,10 +1,12 @@
 import { 
-    getProfile , 
-    getConversations , 
-    getUsers , 
-    createConversation ,
+    getProfile, 
+    getConversations, 
+    getUsers, 
+    createConversation,
     getConversationMessages,
-    sendMessage
+    sendMessage,
+    updateMessage,
+    deleteMessage
 } from "../services/authService.js";
 
 const currentUserName = document.querySelector("#currentUserName");
@@ -25,6 +27,7 @@ const chatButton = document.getElementById("chatButton");
 const profileButton = document.getElementById("profileButton");
 const themeButton = document.getElementById("themeButton");
 const themeIcon = document.getElementById("themeIcon");
+const bottomNav = document.getElementById("bottomNav");
 
 const token = localStorage.getItem("token");
 const savedTheme = localStorage.getItem("theme");
@@ -122,8 +125,9 @@ function handleMobileView() {
     if (window.innerWidth < 640) {
         conversationPanel.classList.remove("hidden");
         conversationPanel.classList.add("flex");
-
         chatPanel.classList.add("hidden");
+    } else {
+        bottomNav.classList.remove("hidden"); // toujours visible en desktop
     }
 }
 
@@ -172,9 +176,9 @@ async function loadConversations() {
 
                     if (window.innerWidth < 640) {
                         conversationPanel.classList.add("hidden");
-
                         chatPanel.classList.remove("hidden");
                         chatPanel.classList.add("flex");
+                        bottomNav.classList.add("hidden"); // <-- on cache la navbar
                     }
 
                     chatUserName.textContent = otherParticipant.user.fullName;
@@ -244,6 +248,13 @@ async function loadUsers() {
 
             userCard.addEventListener("click", async () => {
                 try {
+                    if (window.innerWidth < 640) {
+                        conversationPanel.classList.add("hidden");
+                        chatPanel.classList.remove("hidden");
+                        chatPanel.classList.add("flex");
+                        bottomNav.classList.add("hidden");
+                    }
+
                     chatUserName.textContent = user.fullName;
                     chatUserBio.textContent = user.bio || "enligne";
                     
@@ -312,26 +323,211 @@ async function refreshMessages() {
 
 // Fonction pour afficher l'historique des messages
 function displayMessages(messagesList) {
-    messagesContainer.innerHTML = ""; // On vide l'écran
+    messagesContainer.innerHTML = "";
 
-    // Si le tableau est vide ou non valide, on affiche le message d'accueil
     if (!messagesList || messagesList.length === 0) {
-        messagesContainer.innerHTML = `<div class="text-center text-slate-400 text-xs my-auto">Aucun message. Dites bonjour !</div>`;
-        return;
-    }
-    // On boucle directement sur la liste reçue
-        messagesList.forEach((msg) => {
-        const messageDiv = document.createElement("div");
-        const isMe = msg.senderId === currentUser.user.id;
-
-        messageDiv.className = `flex ${isMe ? "justify-end" : "justify-start"} mb-3`;
-        messageDiv.innerHTML = `
-            <div class="max-w-[70%] rounded-2xl px-4 py-2 text-sm shadow-sm 
-            ${isMe ? "bg-emerald-500 text-gray-800 rounded-tr-none" : "bg-white text-slate-700 rounded-tl-none border"}">
-                <p class="break-words">${msg.content}</p>
+        messagesContainer.innerHTML = `
+            <div class="text-center text-slate-400 text-xs my-auto">
+                Aucun message. Dites bonjour !
             </div>
         `;
+        return;
+    }
+
+    messagesList.forEach((msg) => {
+        const messageDiv = document.createElement("div");
+
+        const isMe = msg.senderId === currentUser.user.id;
+
+        messageDiv.className = `flex ${
+            isMe ? "justify-end" : "justify-start"
+        } mb-3`;
+
+        messageDiv.innerHTML = `
+            <div class="relative max-w-[70%]">
+
+                <div class="
+                    rounded-2xl px-4 py-2 text-sm shadow-sm
+                    ${
+                        isMe
+                            ? "bg-emerald-500 text-gray-800 rounded-tr-none"
+                            : "bg-white text-slate-700 rounded-tl-none border"
+                    }
+                ">
+                    <div class="flex items-start gap-2">
+
+                        <p class="break-words flex-1">
+                            ${msg.content}
+                        </p>
+
+                        ${
+                            isMe
+                                ? `
+                                <button
+                                    class="message-menu-button text-gray-600 hover:text-gray-900 p-1"
+                                    title="Options"
+                                >
+                                    ⋮
+                                </button>
+                                `
+                                : ""
+                        }
+
+                    </div>
+                </div>
+
+                ${
+                    isMe
+                        ? `
+                        <div
+                            class="message-menu hidden absolute right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg z-50 overflow-hidden"
+                        >
+                            <button
+                                class="edit-message block w-full text-left px-4 py-2 text-sm hover:bg-slate-100"
+                            >
+                                Modifier
+                            </button>
+
+                            <button
+                                class="delete-message block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-slate-100"
+                            >
+                                Supprimer
+                            </button>
+                        </div>
+                        `
+                        : ""
+                }
+
+            </div>
+        `;
+
         messagesContainer.appendChild(messageDiv);
+
+        // Les options existent uniquement pour nos messages
+        if (isMe) {
+
+            const menuButton = messageDiv.querySelector(".message-menu-button");
+            const menu = messageDiv.querySelector(".message-menu");
+            const editButton = messageDiv.querySelector(".edit-message");
+            const deleteButton = messageDiv.querySelector(".delete-message");
+
+            // Ouvrir / fermer le menu
+            menuButton.addEventListener("click", (event) => {
+                event.stopPropagation();
+
+                // Fermer les autres menus
+                document.querySelectorAll(".message-menu").forEach((otherMenu) => {
+                    if (otherMenu !== menu) {
+                        otherMenu.classList.add("hidden");
+                    }
+                });
+
+                menu.classList.toggle("hidden");
+            });
+
+            // Modifier
+            editButton.addEventListener("click", async () => {
+
+                const newContent = prompt(
+                    "Modifier votre message :",
+                    msg.content
+                );
+
+                if (newContent === null) {
+                    return;
+                }
+
+                const updatedContent = newContent.trim();
+
+                if (updatedContent === "") {
+                    alert("Le message ne peut pas être vide.");
+                    return;
+                }
+
+                try {
+
+                    const data = await updateMessage(
+                        msg.id,
+                        updatedContent
+                    );
+
+                    if (data.success) {
+
+                        menu.classList.add("hidden");
+
+                        const messagesData =
+                            await getConversationMessages(
+                                activeConversationId
+                            );
+
+                        displayMessages(messagesData.messages);
+
+                        await loadConversations();
+
+                    } else {
+
+                        alert(data.message || "Impossible de modifier le message.");
+
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Erreur lors de la modification :",
+                        error
+                    );
+
+                    alert("Une erreur est survenue.");
+
+                }
+            });
+
+            // Supprimer
+            deleteButton.addEventListener("click", async () => {
+
+                const confirmation = confirm(
+                    "Voulez-vous vraiment supprimer ce message ?"
+                );
+
+                if (!confirmation) {
+                    return;
+                }
+
+                try {
+
+                    const data = await deleteMessage(msg.id);
+
+                    if (data.success) {
+
+                        menu.classList.add("hidden");
+
+                        const messagesData =
+                            await getConversationMessages(
+                                activeConversationId
+                            );
+
+                        displayMessages(messagesData.messages);
+
+                        await loadConversations();
+
+                    } else {
+
+                        alert(data.message || "Impossible de supprimer le message.");
+
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Erreur lors de la suppression :",
+                        error
+                    );
+
+                    alert("Une erreur est survenue.");
+
+                }
+            });
+        }
     });
 
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -392,8 +588,8 @@ backButton.addEventListener("click", () => {
     if (window.innerWidth < 640) {
         conversationPanel.classList.remove("hidden");
         conversationPanel.classList.add("flex");
-
         chatPanel.classList.add("hidden");
+        bottomNav.classList.remove("hidden"); // <-- on la réaffiche
     }
 });
 
@@ -429,7 +625,11 @@ themeButton.addEventListener("click", () => {
 
 setInterval(refreshMessages, 2000);
 
-loadProfile();
-handleMobileView()
-loadConversations();
-loadUsers();
+async function init() {
+    await loadProfile();
+    handleMobileView();
+    await loadConversations();
+    await loadUsers();
+}
+
+init();

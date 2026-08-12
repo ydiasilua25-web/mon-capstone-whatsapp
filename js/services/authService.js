@@ -271,3 +271,45 @@ export async function updateProfile(user) {
 
     return await response.json();
 }
+
+export async function updateMessage(messageId, content) {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(
+        `https://kadea-chat-api.onrender.com/messages/${messageId}`,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": "wksp_4ff9bde48b6dafc1faaae4792a3e6677",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                content: content
+            })
+        }
+    );
+
+    const data = await response.json();
+
+    return data;
+}
+
+export async function deleteMessage(messageId) {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(
+        `https://kadea-chat-api.onrender.com/messages/${messageId}`,
+        {
+            method: "DELETE",
+            headers: {
+                "x-api-key": "wksp_4ff9bde48b6dafc1faaae4792a3e6677",
+                "Authorization": `Bearer ${token}`
+            }
+        }
+    );
+
+    const data = await response.json();
+
+    return data;
+}

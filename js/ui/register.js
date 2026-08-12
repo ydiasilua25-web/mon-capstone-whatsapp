@@ -1,5 +1,11 @@
 import { register } from "../services/authService.js";
 
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.documentElement.classList.add("dark");
+}
+
 const form = document.querySelector("#registerForm");
 const fullNameInput = document.querySelector("#fullname");
 const emailInput = document.querySelector("#email");

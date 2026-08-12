@@ -12,6 +12,12 @@ if (!token) {
     window.location.href = "index.html";
 }
 
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.documentElement.classList.add("dark");
+}
+
 const profileAvatar = document.getElementById("profileAvatar");
 const profileName = document.getElementById("profileName");
 const profileEmail = document.getElementById("profileEmail");
