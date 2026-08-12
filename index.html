@@ -94,11 +94,6 @@
                   Password
                 </label>
 
-                <a href="#"
-                   class="text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                  Forgot?
-                </a>
-
               </div>
 
               <div class="bg-white dark:bg-slate-700 relative">
@@ -132,7 +127,6 @@
 
                 <button
                   type="button"
-                  onclick="togglePwd('password')"
                   class="absolute inset-y-0 right-0 pr-3 flex items-center
                          text-gray-400 dark:text-slate-400
                          hover:text-gray-600 dark:hover:text-white">
@@ -143,6 +137,7 @@
                        viewBox="0 0 24 24"
                        stroke-width="1.8"
                        stroke="currentColor">
+                       
                     <path stroke-linecap="round"
                           stroke-linejoin="round"
                           d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
@@ -198,7 +193,7 @@
         Don't have an account?
 
         <a
-          href="create-account.html"
+          href="register.html"
           class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
           Create Account
         </a>
@@ -207,12 +202,7 @@
 
   </div>
 
-<script type="module" src="./js/ui/login.js">
-function togglePwd(id) {
-  const input = document.getElementById(id);
-  input.type = input.type === 'password' ? 'text' : 'password';
-}
-</script>
+<script type="module" src="./js/ui/login.js"></script>
 
 </body>
 </html>
