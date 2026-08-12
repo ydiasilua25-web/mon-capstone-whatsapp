@@ -8,184 +8,125 @@
 </head>
 
 <!-- body class="h-full flex bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white antialiased overflow-hidden" -->
-<body class="h-full flex flex-col md:flex-row bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased overflow-hidden">
+<body class="h-full flex flex-col md:flex-row text-slate-800 antialiased overflow-hidden">    
+    <!-- 1. BARRE LATÉRALE D'ONGLETS -->
+    <!-- Masquée sur mobile (hidden), elle apparaît en flex à partir des écrans portables/tablettes (md:flex) -->
+    
 
-    <!-- 1. SECTION LISTE DES CONVERSATIONS -->
-
+    <!-- 2. SECTION LISTE DES CONVERSATIONS -->
+    <!-- Masquée sur mobile (hidden), elle prend toute sa place à partir des écrans intermédiaires (sm:flex ou md:w-80) -->
     <aside id="conversationPanel"
-        class="w-full sm:w-72 md:w-80 h-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border-r border-slate-200 dark:border-slate-700 flex-col flex-shrink-0 hidden sm:flex">
-
+       class="w-full sm:w-72 md:w-80 h-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border-r border-slate-200 flex-col flex-shrink-0 hidden sm:flex">
         <!-- En-tête Profil -->
-        <header class="p-4 flex items-center justify-between bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
-
+       <header class="p-4 flex items-center justify-between bg-white dark:bg-slate-900 dark:border-slate-700 border-b border-slate-200 ">
             <div class="flex items-center gap-3">
-
                 <div class="relative">
-                    <img
+                   <img
                         id="chatProfileAvatar"
                         src="assets/avatars/default-avatar.jpg"
                         class="w-10 h-10 rounded-full"
                     >
-
-                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
                 </div>
 
                 <div>
-                    <h2 id="currentUserName"
-                        class="font-semibold text-sm leading-tight text-slate-800 dark:text-white">
+                    <h2 id="currentUserName" class="font-semibold text-sm leading-tight">
                         Chargement.......
                     </h2>
-
-                    <p class="text-xs text-slate-500 dark:text-slate-400">
-                        My Status:
-                        <span id="currentUserStatus"
-                            class="text-green-600 dark:text-green-400 font-medium">
+                    <p class="text-xs text-slate-500">
+                        My Status: 
+                        <span id="currentUserStatus" class="text-green-600 font-medium">
                             Active
                         </span>
                     </p>
                 </div>
-
             </div>
 
-            <button
-                class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
-
-                <svg xmlns="http://www.w3.org/2000/svg"
+            <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors">
+               <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     class="w-5 h-5">
 
-                    <path
-                        stroke-linecap="round"
+                    <path stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M16.862 3.487a2.25 2.25 0 113.182 3.182L8.25 18.463 3 20l1.537-5.25L16.862 3.487z"/>
-
+                        d="M16.862 3.487a2.25 2.25 0 113.182 3.182L8.25 18.463 3 20l1.537-5.25L16.862 3.487z"/>            
                 </svg>
             </button>
-
+            
         </header>
-
-
         <!-- Recherche -->
         <div class="p-4">
-
             <div class="relative flex items-center">
-
-                <svg xmlns="http://www.w3.org/2000/svg"
+               <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     class="w-4 h-4 absolute left-3 text-slate-400 pointer-events-none">
 
-                    <circle cx="11" cy="11" r="7" stroke-width="2"/>
+                    <circle
+                        cx="11" cy="11" r="7" stroke-width="2"/>
 
                     <path
                         stroke-linecap="round"
                         stroke-width="2"
                         d="M20 20l-3.5-3.5"/>
-
                 </svg>
-
+                 
                 <input
-                    type="text"
-                    placeholder="Search conversations..."
-                    class="w-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white pl-10 pr-4 py-2 rounded-xl text-sm placeholder-slate-400 dark:placeholder-slate-500 border border-transparent dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white dark:focus:bg-slate-700 transition-all">
-
+                    type="text" placeholder="Search conversations..."
+                    class="w-full bg-slate-100 pl-10 pr-4 py-2 rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all">
             </div>
-
         </div>
-
-
+        
         <!-- Liste Contacts -->
-        <div id="conversationList"
-            class="flex-1 overflow-y-auto space-y-1 px-2">
-
-            <!-- Conversation active -->
-            <div
-                class="flex items-center gap-3 p-3 bg-blue-50/60 dark:bg-blue-900/30 border-l-4 border-blue-600 rounded-r-xl cursor-pointer">
-
+        <div id="conversationList" class="flex-1 overflow-y-auto space-y-1 px-2">
+            <!-- User Active -->
+            <div class="flex items-center gap-3 p-3 bg-blue-50/60 border-l-4 border-blue-600 rounded-r-xl cursor-pointer">
+                <!-- img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Sarah Connor" class="w-11 h-11 rounded-full object-cover flex-shrink-0" -->
                 <div class="flex-1 min-w-0">
-
                     <div class="flex items-center justify-between">
+                        <h3 class="font-semibold text-sm truncate">
 
-                        <h3 class="font-semibold text-sm text-slate-800 dark:text-white truncate">
                         </h3>
-
-                        <span class="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                        <span class="text-xs text-blue-600 font-medium">
                             14:20
                         </span>
-
                     </div>
-
                     <div class="flex items-center justify-between mt-0.5">
+                        <p class="text-xs text-slate-600 truncate">
 
-                        <p class="text-xs text-slate-600 dark:text-slate-400 truncate">
                         </p>
-
-                        <span
-                            class="bg-blue-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full flex-shrink-0 ml-2">
-                            2
-                        </span>
-
+                        <span class="bg-blue-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full flex-shrink-0 ml-2">2</span>
                     </div>
-
                 </div>
-
             </div>
 
-
-            <!-- conversation -->
-            <div
-                class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl cursor-pointer transition-colors">
-
-                <div
-                    class="w-11 h-11 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 flex items-center justify-center font-semibold text-sm flex-shrink-0">
-                    JD
-                </div>
-
+            <!-- John Doe -->
+            <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-xl cursor-pointer transition-colors">
+                <div class="w-11 h-11 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-semibold text-sm flex-shrink-0">JD</div>
                 <div class="flex-1 min-w-0">
-
                     <div class="flex items-center justify-between">
-
-                        <h3 class="font-medium text-sm text-slate-700 dark:text-slate-200 truncate">
-                        </h3>
-
-                        <span class="text-xs text-slate-400">
-                            Yesterday
-                        </span>
-
+                        <h3 class="font-medium text-sm text-slate-700 truncate"></h3>
+                        <span class="text-xs text-slate-400">Yesterday</span>
                     </div>
-
-                    <p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                    </p>
-
+                    <p class="text-xs text-slate-500 truncate mt-0.5"></p>
                 </div>
-
             </div>
-
         </div>
-
     </aside>
 
-
-    <!-- 2. ZONE DE CHAT PRINCIPALE -->
-
-    <main id="chatPanel"
-        class="flex-1 h-full flex flex-col pb-16 md:pb-0 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white">
-
+    <!-- 3. ZONE DE CHAT PRINCIPALE -->
+    <!-- Par défaut elle prend tout l'écran en mobile (flex-1). Sur tablette/bureau, elle s'ajuste avec le reste -->
+   <main id="chatPanel" class="flex-1 h-full flex flex-col pb-16 md:pb-0 dark:bg-slate-900 text-slate-800 dark:text-white bg-slate-50">
         <!-- En-tête -->
-        <header
-            class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 px-4 sm:px-6 flex items-center justify-between flex-shrink-0">
-
+        <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between flex-shrink-0">
             <div class="flex items-center gap-2 sm:gap-3">
-
-                <!-- Bouton Retour -->
-                <button
-                    id="backButton"
-                    class="sm:hidden p-1.5 text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
-
+                <!-- Bouton Retour(arrow-left) -->
+                <button id="backButton"
+                    class="sm:hidden p-1.5 text-slate-500 hover:bg-slate-100 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -205,59 +146,35 @@
                             d="M12 19l-7-7 7-7"/>
 
                     </svg>
-
                 </button>
-
-
+                
                 <div class="relative">
-
-                    <img
-                        id="chatUserImg"
-                        class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover">
-
-                    <span
-                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full">
-                    </span>
-
+                    <img id="chatUserImg"
+                        class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover" > <!-- src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Sarah Connor"  -->
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
                 </div>
-
-
                 <div>
-
-                    <h2
-                        id="chatUserName"
-                        class="font-semibold text-xs sm:text-sm text-slate-800 dark:text-white">
+                    <h2 id="chatUserName"
+                        class="font-semibold text-xs sm:text-sm">
                     </h2>
-
-                    <p
-                        id="chatUserBio"
-                        class="text-[10px] sm:text-xs text-slate-400 dark:text-slate-500 flex items-center gap-1">
+                    <p id="chatUserBio"
+                        class="text-[10px] sm:text-xs text-slate-400 flex items-center gap-1">
                     </p>
-
                 </div>
 
             </div>
-
-
-            <div class="flex items-center gap-1 sm:gap-2 text-slate-500 dark:text-slate-300">
-
-                <!-- Video -->
-                <button
-                    class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-
+            
+            <div class="flex items-center gap-1 sm:gap-2 text-slate-500">
+                <!--bouton video-->
+                <button class="p-2 hover:bg-slate-100 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        class="w-5 h-5">
+                        class="w-5 h-5 sm:w-5 sm:h-5">
 
                         <rect
-                            x="3"
-                            y="6"
-                            width="13"
-                            height="12"
-                            rx="2"
-                            stroke-width="2"/>
+                            x="3" y="6" width="13" height="12" rx="2" stroke-width="2"/>
 
                         <path
                             stroke-linecap="round"
@@ -266,14 +183,9 @@
                             d="M16 10l5-3v10l-5-3z"/>
 
                     </svg>
-
                 </button>
-
-
-                <!-- Call -->
-                <button
-                    class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-
+                <!-- bouton call-->
+                <button class="p-2 hover:bg-slate-100 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -285,141 +197,126 @@
                             stroke-linejoin="round"
                             stroke-width="2"
                             d="M22 16.92V20a2 2 0 01-2.18 2A19.86 19.86 0 012 4.18 2 2 0 014 2h3.09a2 2 0 012 1.72l.5 3a2 2 0 01-.57 1.74L7.91 9.91a16 16 0 006.18 6.18l1.45-1.11a2 2 0 011.74-.57l3 .5A2 2 0 0122 16.92z"/>
-
                     </svg>
-
                 </button>
-
-
-                <!-- Menu -->
-                <button
-                    class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-
+                <!-- Menu vertical -->
+                <button class="p-2 hover:bg-slate-100 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        class="w-5 h-5">
-
+                        class="w-5 h-5 sm:w-5 sm:h-5">
                         <circle cx="12" cy="5" r="1.5"/>
                         <circle cx="12" cy="12" r="1.5"/>
                         <circle cx="12" cy="19" r="1.5"/>
-
                     </svg>
-
                 </button>
 
             </div>
 
         </header>
 
-
-        <!-- Zone des messages -->
-        <div
-            id="messagesContainer"
-             class="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white">
-
+        <!-- Zone des messages (Scrollable) -->
+        <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
             <div class="flex justify-center">
-
-                <span
-                    class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 bg-slate-200/60 dark:bg-slate-800 px-3 py-1 rounded-full font-medium">
-                    Today
-                </span>
-
+                <span class="text-[11px] sm:text-xs text-slate-500 bg-slate-200/60 px-3 py-1 rounded-full font-medium">Today</span>
             </div>
 
+            <!-- Message Reçu -->
+            <div class="max-w-[85%] sm:max-w-xl space-y-1">
+                <!-- div class="bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm text-xs sm:text-sm text-slate-700 leading-relaxed">
+                   
+                </div>
+                <p class="text-[10px] text-slate-400 px-1">14:02</p -->
+            </div>
+
+            <!-- Message Envoyé -->
+            <div class="flex flex-col items-end space-y-1">
+                <!-- div class="max-w-[85%] sm:max-w-xl bg-blue-600 text-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none shadow-sm text-xs sm:text-sm leading-relaxed">
+                    
+                </div>
+                <div class="flex items-center gap-1 px-1 w-3.5 h-3.5 text-blue-500">
+                    <span class="text-[10px] text-slate-400">14:05</span>
+                </div -->
+            </div>
         </div>
 
-
         <!-- Zone d'input -->
-        <footer class="h-20 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 px-4 sm:px-6 flex items-center gap-3 sm:gap-4 flex-shrink-0">
-
-            <div
-                class="flex items-center gap-2 sm:gap-3 text-slate-400 dark:text-slate-500 flex-shrink-0">
-
-                <!-- Add -->
-                <button class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
-
-                    <svg xmlns="http://www.w3.org/2000/svg"
+        <footer class="h-20 bg-white border-t border-slate-200 px-4 sm:px-6 flex items-center gap-3 sm:gap-4 flex-shrink-0">
+            <div class="flex items-center gap-2 sm:gap-3 text-slate-400 flex-shrink-0">
+                <!-- bouton add-->
+                <button class="hover:text-slate-600 transition-colors">
+                   <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        class="w-6 h-6">
+                        stroke="currentColor"
+                        class="w-6 h-6 sm:w-6 sm:h-6">
 
                         <circle
                             cx="12"
                             cy="12"
                             r="9"
-                            stroke="currentColor"
                             stroke-width="2"/>
 
                         <path
-                            stroke="currentColor"
                             stroke-linecap="round"
                             stroke-width="2"
                             d="M12 8v8"/>
 
                         <path
-                            stroke="currentColor"
                             stroke-linecap="round"
                             stroke-width="2"
                             d="M8 12h8"/>
 
                     </svg>
-
                 </button>
-
-
-                <!-- Emoji -->
-                <button class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
-
-                    <svg xmlns="http://www.w3.org/2000/svg"
+                <!-- bouton emoji-->
+                <button class="hover:text-slate-600 transition-colors">
+                   <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        class="w-6 h-6">
+                        stroke="currentColor"
+                        class="w-6 h-6 sm:w-6 sm:h-6">
 
                         <circle
                             cx="12"
                             cy="12"
                             r="9"
-                            stroke="currentColor"
                             stroke-width="2"/>
 
-                        <circle cx="9" cy="10" r="1"/>
-                        <circle cx="15" cy="10" r="1"/>
+                        <circle
+                            cx="9"
+                            cy="10"
+                            r="1"/>
+
+                        <circle
+                            cx="15"
+                            cy="10"
+                            r="1"/>
 
                         <path
-                            stroke="currentColor"
                             stroke-linecap="round"
                             stroke-width="2"
                             d="M8 15c1 1.5 2.5 2 4 2s3-.5 4-2"/>
-
                     </svg>
-
                 </button>
 
             </div>
 
-
             <div class="flex-1">
-
                 <input
                     id="messageInput"
-                    type="text"
-                    placeholder="Type a message..."
-                    class="w-full bg-slate-100/80 dark:bg-slate-700 dark:text-white dark:border-slate-600 px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm placeholder-slate-400 dark:placeholder-slate-300 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white dark:focus:bg-slate-600 transition-all">
-
+                    type="text" placeholder="Type a message..."
+                    class="w-full bg-slate-100/80 px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm placeholder-slate-400 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all">
             </div>
-
-
             <button
                 id="sendMessageBtn"
-                class="bg-blue-600 hover:bg-blue-700 text-white p-2 sm:p-2.5 rounded-full shadow-md shadow-blue-200 dark:shadow-none flex items-center justify-center transition-all flex-shrink-0">
-
+                class="bg-blue-600 hover:bg-blue-700 text-white p-2 sm:p-2.5 rounded-full shadow-md shadow-blue-200 flex items-center justify-center transition-all flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    class="w-5 h-5 sm:w-4 sm:h-4 transform rotate-45">
+                    class="w-5 h-5 sm:w-4 sm:h-4 transform rotate-45 -translate-x-0.5 translate-y-0.5">
 
                     <path
                         stroke-linecap="round"
@@ -432,143 +329,98 @@
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M22 2L15 22L11 13L2 9L22 2Z"/>
-
                 </svg>
-
             </button>
 
         </footer>
 
     </main>
 
-
-    <!-- 3. BARRE DE NAVIGATION -->
-
-    <nav id="bottomNav"
-         class="w-full md:w-16 h-16 md:h-full bg-white dark:bg-slate-900 border-t md:border-t-0 md:border-r border-slate-200 dark:border-slate-700 flex flex-row md:flex-col justify-between items-center px-6 md:px-0 py-0 md:py-4 flex-shrink-0 gap-6 order-2 md:order-first">
-
-        <div
-            class="flex flex-row md:flex-col items-center justify-around md:justify-start gap-4 md:gap-6 w-full md:flex-none">
-
-            <!-- Messages -->
-            <button
-                class="p-2 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-
-                <svg xmlns="http://www.w3.org/2000/svg"
+    <nav class="w-full md:w-16 h-16 md:h-full bg-white border-b md:border-t-0 md:border-r border-slate-200 flex flex-row md:flex-col justify-between items-center px-6 md:px-0 py-0 md:py-4 flex-shrink-0 gap-6 order-2 md:order-first">
+   <!-- nav class="hidden md:flex w-16 h-full bg-white dark:bg-slate-800 dark:border-slate-700 border-r border-slate-200 flex-col justify-between items-center py-4 flex-shrink-0" -->
+        <!-- div class="flex flex-col gap-6 w-full items-center" -->
+        <div class="flex flex-row md:flex-col items-center justify-around justify-between md:justify-start gap-4 md:gap-6 w-full flex-1 md:flex-none">
+        <!-- div class="flex flex-row md:flex-col gap-2 md:gap-6 w-full justify-around md:items-center" -->
+            <!-- Message square-->
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     class="w-6 h-6">
 
-                    <path
-                        stroke-linecap="round"
+                    <path stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M8 10h8M8 14h5M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4-.8L3 20l1.2-4A7.93 7.93 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-
                 </svg>
-
             </button>
-
-
-            <!-- Chat -->
-            <button
-                id="chatButton"
-                class="p-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-200 dark:shadow-none hover:bg-blue-700 transition-all">
-
+            <!-- Messages square/conve-->
+            <button id="chatButton"
+                class="p-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-200 hover:bg-blue-700 transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     class="w-6 h-6">
 
-                    <path
-                        stroke-linecap="round"
+                    <path stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M17 8h2a2 2 0 012 2v8l-4-4H9a2 2 0 01-2-2v-2M15 3H5a2 2 0 00-2 2v8a2 2 0 002 2h8l4 4V5a2 2 0 00-2-2z"/>
-
                 </svg>
-
             </button>
-
-
-            <!-- Phone -->
-            <button
-                class="p-2 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-
+            <!-- Phone-->
+            <button class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     class="w-6 h-6">
 
-                    <path
-                        stroke-linecap="round"
+                    <path stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M22 16.92V20a2 2 0 01-2.18 2A19.86 19.86 0 012 4.18 2 2 0 014 2h3.09a2 2 0 012 1.72l.5 3a2 2 0 01-.57 1.74L7.91 9.91a16 16 0 006.18 6.18l1.45-1.11a2 2 0 011.74-.57l3 .5A2 2 0 0122 16.92z"/>
-
                 </svg>
-
             </button>
-
-
-            <!-- Profil -->
-            <button
-                id="profileButton"
-                class="p-2 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-
+            <!-- User-->
+            <button id="profileButton"
+                class="p-2 text-slate-400 hover:text-blue-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     class="w-6 h-6">
 
-                    <path
-                        stroke-linecap="round"
+                    <path stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M20 21a8 8 0 10-16 0M12 11a4 4 0 100-8 4 4 0 000 8z"/>
-
                 </svg>
-
             </button>
-
+            
         </div>
 
-
-        <!-- Thème + Settings -->
-        <div class="flex flex-row md:flex-col gap-4 w-full items-center justify-center">
-
-            <!-- Thème -->
-            <button
-                id="themeButton"
-                class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
-
+        <div class="flex md:flex-col gap-4 w-full items-center">
+            <!-- Thème-->
+            <button id="themeButton"
+                class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
                 <span id="themeIcon"></span>
-
             </button>
-
-
-            <!-- Settings -->
-            <button
-                class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
-
+            <!--Settings-->
+            <button class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     class="w-6 h-6">
 
-                    <path
-                        stroke-linecap="round"
+                    <path stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M12 15.5A3.5 3.5 0 1012 8.5a3.5 3.5 0 000 7zm7.4-2.5a7.9 7.9 0 000-2l2-1.5-2-3.5-2.4.7a8 8 0 001.7-1L15 2h-6l-.3 2.7a8 8 0 00-1.7 1L4.6 5 2.6 8.5l2 1.5a7.9 7.9 0 000 2l-2 1.5L4.6 17l2.4-.7a8 8 0 001.7 1L9 22h6l.3-2.7a8 8 0 001.7-1l2.4.7 2-3.5-2-1.5z"/>
-
+                        d="M12 15.5A3.5 3.5 0 1012 8.5a3.5 3.5 0 000 7zm7.4-2.5a7.9 7.9 0 000-2l2-1.5-2-3.5-2.4.7a8 8 0 00-1.7-1L15 2h-6l-.3 2.7a8 8 0 00-1.7 1L4.6 5 2.6 8.5l2 1.5a7.9 7.9 0 000 2l-2 1.5L4.6 17l2.4-.7a8 8 0 001.7 1L9 22h6l.3-2.7a8 8 0 001.7-1l2.4.7 2-3.5-2-1.5z"/>
                 </svg>
-
             </button>
 
         </div>
