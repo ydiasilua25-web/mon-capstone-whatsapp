@@ -15,6 +15,7 @@ const conversationList = document.querySelector("#conversationList");
 const messagesContainer = document.querySelector("#messagesContainer");
 const messageInput = document.querySelector("#messageInput");
 const sendMessageBtn = document.querySelector("#sendMessageBtn");
+
 const chatUserName = document.getElementById("chatUserName");
 const chatUserBio = document.getElementById("chatUserBio");
 const chatUserImg = document.getElementById("chatUserImg");
@@ -22,6 +23,7 @@ const chatProfileAvatar = document.getElementById("chatProfileAvatar");
 const chatProfileName = document.getElementById("currentUserName");
 const conversationPanel = document.getElementById("conversationPanel");
 const chatPanel = document.getElementById("chatPanel");
+
 const backButton = document.getElementById("backButton");
 const chatButton = document.getElementById("chatButton");
 const profileButton = document.getElementById("profileButton");
