@@ -29,7 +29,7 @@ const chatButton = document.getElementById("chatButton");
 const profileButton = document.getElementById("profileButton");
 const themeButton = document.getElementById("themeButton");
 const themeIcon = document.getElementById("themeIcon");
-const bottomNav = document.getElementById("bottomNav");
+//const bottomNav = document.getElementById("bottomNav");
 
 const token = localStorage.getItem("token");
 const savedTheme = localStorage.getItem("theme");
@@ -47,6 +47,7 @@ if (savedTheme === "dark") {
     document.documentElement.classList.add("dark");
 }
 
+//icones mode sombre & mode claire
 const moonIcon = `
 <svg xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -180,7 +181,7 @@ async function loadConversations() {
                         conversationPanel.classList.add("hidden");
                         chatPanel.classList.remove("hidden");
                         chatPanel.classList.add("flex");
-                        bottomNav.classList.add("hidden"); // <-- on cache la navbar
+                        //bottomNav.classList.add("hidden"); // <-- on cache la navbar
                     }
 
                     chatUserName.textContent = otherParticipant.user.fullName;
@@ -254,7 +255,7 @@ async function loadUsers() {
                         conversationPanel.classList.add("hidden");
                         chatPanel.classList.remove("hidden");
                         chatPanel.classList.add("flex");
-                        bottomNav.classList.add("hidden");
+                        //bottomNav.classList.add("hidden");
                     }
 
                     chatUserName.textContent = user.fullName;
@@ -591,7 +592,7 @@ backButton.addEventListener("click", () => {
         conversationPanel.classList.remove("hidden");
         conversationPanel.classList.add("flex");
         chatPanel.classList.add("hidden");
-        bottomNav.classList.remove("hidden"); // <-- on la réaffiche
+        //bottomNav.classList.remove("hidden"); // <-- on la réaffiche
     }
 });
 
