@@ -2,11 +2,6 @@
 
 > Application web de messagerie instantanée développée dans le cadre du projet final du deuxieme module JavaScript chez Kadea.
 
-![Kadea Chat](https://img.shields.io/badge/Kadea-Chat-2563EB?style=for-the-badge)
-![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-
 ---
 
 ## 📌 Présentation
